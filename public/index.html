@@ -2,8 +2,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="styles/style.css">
     <title>Landing Page</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,13 +11,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Special+Gothic:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </script>
 <body>
     <header class="container">
-        <h1 class="logo">RAFAEL COLLARES
-           
-        </h1>
+        <img class="logo" src="assets/ChatGPT Image 8 de jan. de 2026, 13_47_25.png" alt="" srcset="">
          <span id="burguer"></span>
         <nav class="navbar">
             <li><a href=".">Inicio</a></li>
@@ -36,19 +37,72 @@
         <p>Solicite sua <span>página</span> para oferecer <br>seu produto ou seu serviços <br>de maneira assesível</p>
             <div class="content-button">
                 <button>Solicite um orçamento</button>
+             
             </div>
         </div>
+        <dialog>
+                 <i class="fa solid fa-xmark close-btn"></i>
+
+                 <section class="budget">
+            <h1 class="budget-title">Peça seu <span>orçamento</span></h1>
+            <p>Preencha os campos abaixo:</p>
+
+            <form class="budget"  id = "budget"
+            action="" 
+            method="post"
+            >
+             <div class="budget-group" id="budget-group">
+                <input type="text" name="name" id="budget-name" placeholder="Digite seu nome" required>
+            </div>
+            <div class="budget-group" >
+                <input type="text" name="email" id="budget-email" placeholder="Digite Seu email" required>
+            </div>
+            <div class="budget-group" >
+                <input type="text" name="phone" id="budget-phone" placeholder="Digite Seu telefone" required>
+            </div>
+            <div class="budget-group">
+                <label for="services">Escolha seu serviço</label>
+                <select class="services" id="options-services">
+                    <option value="Serviço">..</option>
+                    <option value="Blog">Blog</option>
+                    <option value="Barbearia">Barbearia</option>
+                    <option value="Ecomerce">Ecomerce</option>
+                </select>
+            </div>
+            <div class="budget-group" >
+                <textarea name="message" id="budget-message"name="message" placeholder="Deixe sua mensagem (opcional)"></textarea>
+            </div>
+            <div class="budget-group" >
+                <div id="result-message-budget"></div>
+            </div>
+            <div class="budget-group">
+                <button class='budget-button' id="budget"> Solicite seu orçamento</button>
+            </div>
+
+                    </form>
+        </dialog>
 
         <div class="image-container">
             <img src="assets/f32b8751-95f0-476b-9922-3e778151f45b.png" alt="" srcset="">
         </div>
+        
         </section>
+
+        
         <section class="how-works" >
             <h1>COMO <span>FUNCIONA?</span></h1>
             <ul class="works" data-anime="left">
-                    <li>1 - Solicite seu site atráves do formulário</li>
-                    <li>2 - Mandamos para você a prévia do site</li>
-                    <li>3 - Aprovado ficará no ar no mesmo dia </li>
+                    <li> 
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <p>Solicite seu site atráves do formulário</p>
+                    </li>
+                    <li> 
+                        <i class="fa-solid fa-eye"></i>
+                       <p>Mandamos para você a prévia do site</p>  
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        <p>Aprovado ficará no ar no mesmo dia</p> </li>
             </ul>
 
         </section>
@@ -57,22 +111,22 @@
                 
                 <div class="service-content" data-anime="left" >
                 <i class="fa-solid fa-pen"></i>
-                <h1>Design Responsivo</h1>
+                <h1>Design Moderno</h1>
                 <p>Tenha designs modernos em seu site</p>
                 </div>
                 <div class="service-content" data-anime="left">
                 <i class="fa-solid fa-hand-holding-dollar"></i>
                 <h1>Preço Acessível</h1>
-                <p>Custo baixo para ter seu produto à venda</p>
+                <p>Custo baixo para você adquirir seu site</p>
                 </div>
                 <div class="service-content" data-anime="left">
                 <i class="fa-solid fa-headset"></i>
                 <h1>Suporte Diário</h1>
-                <p>Tenha suporte diário para eventuais dúvidas</p>
+                <p>Suporte diário para eventuais dúvidas</p>
                 </div>
         </section>
          <section class="form" data-anime="left ">
-            <h1 class="form-title">Fale com a gente</h1>
+            <h1 class="form-title"   data-anime="left " >Fale com a gente</h1>
             <form class="form"  id = "form" data-anime="left "
 
             action="" 
@@ -108,6 +162,7 @@
 
 
     </main>
+    
     <script src="scripts/main.js"></script>
 <script src="scripts/routes.js"></script>
 <footer>

@@ -38,7 +38,12 @@ app.post('/api/email', async (req, res) => {
       from: process.env.EMAIL,
       to: process.env.EMAIL,
       subject: `Pedido de orçamento de ${req.body.email}`,
-      html: req.body.message,
+      html: `<p>Nome: ${req.body.name}</p>`
+      + `<p>E-mail: ${req.body.email}</p>`
+      + `<p>Telefone: ${req.body.phone}</p>`
+      + `<p>Serviço: ${req.body.service}</p>`
+      + `<p>Mensagem: ${req.body.message}</p>`
+      ,
     };
 
     // Resposta automática para o cliente
@@ -46,7 +51,8 @@ app.post('/api/email', async (req, res) => {
       from: process.env.EMAIL,
       to: req.body.email, // aqui vai para quem fez o pedido!
       subject: "Recebemos seu pedido",
-      html: `<p>Olá! Muito obrigado, iremos realizar o orçamento solicitado e enviaremos em breve.</p>`
+      html: `<p>Olá! Muito obrigado, iremos realizar o orçamento solicitado  do seu ${req.body.service} e retornaremos em breve.</p>`
+            +`<p>Atencionamente, <br> Rafael Collares </p>`
     };
 
     // Envia os dois e-mails

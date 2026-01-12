@@ -1,3 +1,5 @@
+
+
 // Fvento para ao clicar no botão do whatsapp ele carregar a conversa
 document.addEventListener('DOMContentLoaded', async () => {
    try{
@@ -79,6 +81,70 @@ const validEmail = (email)=>{
   return regex.test(email);
 }
 
+// Seleciona os elementos do dialog de orçamento
+const formDialog = document.getElementById('budget')
+
+let budgetName = document.getElementById('budget-name');
+let budgetEmail = document.getElementById('budget-email');
+let budgetPhone = document.getElementById('budget-phone');
+let budgetMessage = document.getElementById('budget-message');
+let optionServices = document.getElementById('options-services');
+
+
+formDialog.addEventListener('submit',(e)=>{
+
+  e.preventDefault();
+  let budget = {
+    name: budgetName.value,
+    email: budgetEmail.value,
+    service: optionServices.value,
+    phone: budgetPhone.value,
+    message: budgetMessage.value
+  };
+
+  const sendBudget = async () => {
+    try {
+      const res = await fetch('/api/email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(budget)
+      });
+
+      const resJson = await res.text(); 
+      const resultMessage = document.getElementById('result-message-budget');
+
+      const isValid = validEmail(budget.email);
+
+      if (resJson.trim() === 'success'&& isValid) {
+        resultMessage.innerText = 'Email enviado com sucesso';
+        resultMessage.style.color = 'green';
+        formDialog.reset();
+        setTimeout(() => {
+        resultMessage.innerText = '';
+
+        }, 3000);
+
+      } else {
+        resultMessage.innerText = 'Email Invalido';
+        resultMessage.style.color = 'red';
+        form.reset();
+        setTimeout(() => {
+        resultMessage.innerText = '';
+
+        }, 3000);
+
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Erro na requisição: " + err.message);
+    }
+  };
+
+  sendBudget();
+});
+
 //Efeito Scroll
 
 const target = document.querySelectorAll('[data-anime]');
@@ -99,13 +165,13 @@ animeScroll();
 window.addEventListener('scroll', animeScroll);
 
 // Menu burguer
-
+const links = document.querySelectorAll('.navbar a');
 const burger = document.querySelector('#burguer');
-
-function toggleMenu(){
-const navBar = document.querySelector('.navbar');
 const main = document.querySelector('.main')
+const navBar = document.querySelector('.navbar');
+function toggleMenu(){
 navBar.classList.toggle('active')
+
 
 if(navBar.classList.contains('active')){
   main.classList.add('active')
@@ -114,7 +180,38 @@ if(navBar.classList.contains('active')){
 else{
    main.classList.remove('active')
    burger.style.opacity =  1;
+}
+}
 
+// Função para ao clicar no menu responsivo retornar aos estilos anteriores
+function clickNavbar (e){
+  if(e.target.tagName === 'A'){
+    main.classList.remove('active')
+    navBar.classList.remove('active')
+    burger.style.opacity = 1;
+    }
 }
-}
-burger.addEventListener('click', toggleMenu)
+
+burger.addEventListener('click', toggleMenu);
+
+  const contentButton = document.querySelector('.content-button')
+  const dialog = document.querySelector('dialog');
+  const closeBtn = document.querySelector('.close-btn')
+
+
+  function openModal(){
+    dialog.showModal();
+  }
+
+  function closeModal(){
+    dialog.close();
+  }
+contentButton.addEventListener('click', openModal)
+
+
+closeBtn.addEventListener('click', closeModal)
+
+
+links.forEach(link=>{
+  link.addEventListener('click', clickNavbar)
+})
