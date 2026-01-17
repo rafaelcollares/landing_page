@@ -57,15 +57,14 @@ form.addEventListener('submit', (e) => {
 
         }, 5000);
 
-      } else {
-        resultMessage.innerText = 'Email Invalido';
+      } 
+      else{
+        resultMessage.innerText = 'Email Inválido';
         resultMessage.style.color = 'red';
         form.reset();
         setTimeout(() => {
-        resultMessage.innerText = '';
-
+        resultMessage.innerText = ''
         }, 5000);
-
       }
     } catch (err) {
       console.error(err);
@@ -129,7 +128,7 @@ formDialog.addEventListener('submit',(e)=>{
       } else {
         resultMessage.innerText = 'Email Invalido';
         resultMessage.style.color = 'red';
-        form.reset();
+        formDialog.reset();
         setTimeout(() => {
         resultMessage.innerText = '';
 
@@ -192,8 +191,13 @@ function clickNavbar (e){
     }
 }
 
+links.forEach(link=>{
+  link.addEventListener('click', clickNavbar)
+})
+
 burger.addEventListener('click', toggleMenu);
 
+// Modal de orçamento
   const contentButton = document.querySelector('.content-button')
   const dialog = document.querySelector('dialog');
   const closeBtn = document.querySelector('.close-btn')
@@ -212,6 +216,3 @@ contentButton.addEventListener('click', openModal)
 closeBtn.addEventListener('click', closeModal)
 
 
-links.forEach(link=>{
-  link.addEventListener('click', clickNavbar)
-})
