@@ -70,7 +70,7 @@ async function sendMail(req, res) {
     res.status(200).send('success');
   } catch (error) {
     console.error(error);
-    res.status(500).send('error', error.message)
+    res.status(500).send('error', {error:error.message})
 
   }
 }
