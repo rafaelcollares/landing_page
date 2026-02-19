@@ -3,12 +3,13 @@ require('dotenv').config();
 const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors');
-app.use(cors());
 
 
 const routes = require('./routes.js')
 const bodyParser = require('body-parser')
 const app = express();
+app.use(cors());
+
 app.set('trust proxy', 1);
 
 const rateLimit = require('express-rate-limit')
