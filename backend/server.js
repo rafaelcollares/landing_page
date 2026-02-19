@@ -2,8 +2,12 @@ require('dotenv').config();
 
 const express = require('express')
 const helmet = require('helmet')
+
 const routes = require('./routes.js')
 const bodyParser = require('body-parser')
+const app = express();
+app.set('trust proxy', 1);
+
 const rateLimit = require('express-rate-limit')
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -12,7 +16,6 @@ const limiter = rateLimit({
 });
 
 
-const app = express();
 const port = process.env.PORT || 3000;
 
 
@@ -20,9 +23,12 @@ const port = process.env.PORT || 3000;
 app.use(express.static('public'));
 app.use(express.json());
 app.use(helmet());
-app.use(bodyParser.json({limit: '100kb', extended: true}));
+app.use(bodyParser.json({
+  limit: '100kb', extended: true}));
+
 
 app.use('/api', limiter, routes)
+
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
