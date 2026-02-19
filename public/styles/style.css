@@ -36,14 +36,21 @@ html,body{
  
 
 
-   .logo-text {
+   .logo-text{
   font-size: clamp(1rem, 3vw, 2rem);
   font-weight: 1000;
   letter-spacing: 5px;
   margin-left: 0.9rem;
   color: var(--text-primary);
 
-  background-color: transparent; /* CORRIGIDO */
+  background-color: transparent; 
+}
+
+.logo-text > p{
+  font-size: clamp(0.7rem, 2vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: 2px;
+  
 }
 
 
@@ -104,7 +111,7 @@ html,body{
 
 
 .content h1{
-    font-size: clamp(1.5rem, 5dvw, 3rem);
+    font-size: clamp(1.5rem, 6dvw, 3rem);
     line-height: 1.2;
     margin: 0 auto;
     font-weight: 700;
@@ -116,9 +123,9 @@ html,body{
 }
 .content p {
     line-height: 1.3;
-    font-size: clamp(0.95rem, 4dvw, 1.5rem);
+    font-size: clamp(0.95rem, 3dvw, 1.5rem);
     margin-top: 1.5rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .content p span{
@@ -146,12 +153,7 @@ header{
   
 }
 
-.logo-text > p{
-  font-size: clamp(0.7rem, 2vw, 1.2rem);
-  font-weight: 200;
-  letter-spacing: 2px;
-  
-}
+
 
 .content-button{
   margin-top: 2rem;
@@ -202,7 +204,79 @@ header{
 
 }
 
-dialog{
+.dialog-payments, .dialog-contact{
+position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 3rem;
+  border-radius: 2rem;
+  box-shadow: rgba(0 0 0 / 0.3);
+  color: #F2F2F2;
+  margin-bottom: 20rem;
+    max-width: 100%;
+  transition: .3s;
+  cursor: default;
+  animation: spin 4s linear infinite;
+  overflow: hidden;
+  background:
+    linear-gradient(#0a192f, #0a182d) padding-box,
+    conic-gradient(from var(--angle),
+      #2565EB,
+      #6D28D9
+      
+    ) border-box;
+  border: 3px solid transparent;
+  
+  
+}
+
+.dialog-content,.footer-content{
+  gap: 3rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+
+
+.dialog-payments h2, .dialog-contact h2{
+  font-size: clamp(1.3rem, 3.2vw, 2.8rem);
+}
+
+.dialog-payments h3,p, .dialog-contact h3, .dialog-contact {
+  font-weight: 600;
+  font-size: clamp(1rem, 2vw, 1.8rem)
+}
+
+/* Icones */
+.fa-credit-card{
+  color:#4da3ff
+}
+
+.fa-pix{
+  color: #00e5a0;
+}
+
+.fa-envelope{
+  color: #D93025;
+}
+
+.fa-phone{
+  color: #007bff;
+}
+.fa-hand-holding-dollar{
+  color: var(--icon-color-1);
+}
+.fa-headset{
+  color:  var(--icon-color-2);
+}
+.fa-pen{
+color: var(--icon-color-3);
+}
+
+.dialog-budget{
   position: fixed;
   top: 50%;
   left: 50%;
@@ -220,6 +294,16 @@ dialog{
 dialog::backdrop{
   background-color: rgba(0 0 0 / 0.5);
   transition: .3s ease;
+}
+
+dialog > i {
+  color: #F87171;
+  font-size: 1.6rem;
+  position: absolute;
+  right: 1em;
+  top: .5em;
+  transition: .2s ease;
+  cursor: pointer;
 }
 .budget{
   display: flex;
@@ -309,6 +393,11 @@ dialog::backdrop{
   gap: 1rem;
   flex-direction: column;
   transition: .3s;
+  .element {
+  animation: appear 1s ease-in-out;
+  animation-timeline: view();
+}
+
 }
 
 .how-works h1{
@@ -334,15 +423,7 @@ dialog::backdrop{
   color: var(--text-secondary);
 }
 
-dialog > i {
-  color: #F87171;
-  font-size: 1.6rem;
-  position: absolute;
-  right: 1em;
-  top: .5em;
-  transition: .2s ease;
-  cursor: pointer;
-}
+
 
 .works p {
     font-size: clamp(1rem, 3.5vw, 1.8rem);
@@ -465,15 +546,7 @@ transform: translate(-6px);
   text-align: center;
 }
 
-.fa-hand-holding-dollar{
-  color: var(--icon-color-1);
-}
-.fa-headset{
-  color:  var(--icon-color-2);
-}
-.fa-pen{
-color: var(--icon-color-3);
-}
+
 
 
 
@@ -568,6 +641,7 @@ border: none;
 
 .whatsapp i{
   color:var(--text-primary);
+  font-size: 2.5rem;
 }
 
 .whatsapp:hover{
@@ -590,20 +664,31 @@ opacity: 0;
   transform: translate3d(0px, 0, 0);
 }
 
+
 footer{
   display: flex;
-  padding: 1rem;
+  padding: 1rem ;
   justify-content: space-evenly;
+  text-align: center;
   align-items: center;
+  padding-right: 8%;
+  
   width: 100%;
   background-color: var(--dark-bg);
   color: var(--text-footer);
   cursor: pointer;
-  font-size: 0.9rem;
+
 }
 
-footer > p:hover{
+
+.footer-payments:hover, .footer-contact:hover{
   border-bottom: 1px solid #fff;
+}
+
+.footer-payments, .footer-contact{
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+
+  color: var(--text-footer);
 }
 
 @keyframes float{
@@ -728,7 +813,7 @@ box-shadow: rgba(37, 99, 235, 0.3) 0px 1px 3px;
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .content{
     flex-direction: column;
     text-align: center;
@@ -772,7 +857,8 @@ box-shadow: rgba(37, 99, 235, 0.3) 0px 1px 3px;
 
   .form-group input,
   .form-group textarea {
-    width: 80vw;
+    width: 70vw;
+    margin: 0.5rem auto;
   }
 
   footer{

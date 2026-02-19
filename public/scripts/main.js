@@ -1,5 +1,4 @@
 
-
 // Fvento para ao clicar no botão do whatsapp ele carregar a conversa
 document.addEventListener('DOMContentLoaded', async () => {
    try{
@@ -17,6 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       (console.error('Erro ao buscar link', err));
       }
 }); // Final do evento Whatsapp
+
 
 //Seleciona os elementos do formulário
 const form = document.querySelector('#form');
@@ -128,7 +128,6 @@ formDialog.addEventListener('submit',(e)=>{
       } else {
         resultMessage.innerText = 'Email Invalido';
         resultMessage.style.color = 'red';
-        formDialog.reset();
         setTimeout(() => {
         resultMessage.innerText = '';
 
@@ -199,20 +198,51 @@ burger.addEventListener('click', toggleMenu);
 
 // Modal de orçamento
   const contentButton = document.querySelector('.content-button')
-  const dialog = document.querySelector('dialog');
+  const dialogBudget = document.querySelector('.dialog-budget');
   const closeBtn = document.querySelector('.close-btn')
 
 
   function openModal(){
-    dialog.showModal();
+    dialogBudget.showModal();
   }
 
   function closeModal(){
-    dialog.close();
+    dialogBudget.close();
   }
 contentButton.addEventListener('click', openModal)
 
 
 closeBtn.addEventListener('click', closeModal)
+
+//Modais do Footer
+const footerPayments = document.querySelector('.footer-payments')
+const dialogPayments = document.querySelector('.dialog-payments')
+
+
+const footerContact = document.querySelector('.footer-contact')
+const dialogContact = document.querySelector('.dialog-contact')
+const closeBtnPayments = document.querySelector('.close-btn-payments')
+const closeBtnContact = document.querySelector('.close-btn-contact')
+
+
+
+footerPayments.addEventListener('click', () =>{
+  dialogPayments.showModal();
+})
+
+function closeModalPayments(){
+  dialogPayments.close();
+}
+
+footerContact.addEventListener('click',()=>{
+  dialogContact.showModal();
+})
+
+function closeModalContact(){
+  dialogContact.close();
+}
+
+closeBtnPayments.addEventListener('click', closeModalPayments)
+closeBtnContact.addEventListener('click', closeModalContact)
 
 
