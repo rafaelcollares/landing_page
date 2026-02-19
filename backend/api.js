@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const transporter = nodemailer.createTransport({
   host: "smtp.mailersend.net",
-  port: 587,
+  port:  2525,
   auth: {
     user: process.env.EMAIL_SEND,
     pass: process.env.PASSWORD_SEND,
