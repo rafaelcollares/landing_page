@@ -11,6 +11,14 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const responseTransporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD, 
+  },
+});
+
 
 // Email que chega para você
 async function sendMail(req, res) {
@@ -46,22 +54,21 @@ async function sendMail(req, res) {
     };
 
     // Resposta automática para o cliente
-    const responseMailOptions = {
-      from: process.env.EMAIL_SEND,
-      to: email, // aqui vai para quem fez o pedido!
-      subject: "Recebemos seu pedido",
-      html:
-        `<p>Olá! Muito obrigado, iremos realizar o orçamento solicitado do seu ${service} e retornaremos em breve.</p>` +
-        `<p>Atencionamente,<br>Rafael Collares</p>`
-    };
+    
 
     // Envia os dois e-mails
 
-    await Promise.all([
-    transporter.sendMail(mailOptions),
-    transporter.sendMail(responseMailOptions),]);
-
-    console.log('Emails enviados com sucesso');
+   await Promise.all([
+  transporter.sendMail(mailOptions),
+  responseTransporter.sendMail({
+    from: process.env.EMAIL_SEND,
+    to: email, // aqui vai para quem fez o pedido!
+    subject: "Recebemos seu pedido",
+    html:
+      `<p>Olá! Muito obrigado, iremos realizar o orçamento solicitado do seu ${service} e retornaremos em breve.</p>` +
+      `<p>Atenciosamente,<br>Rafael Collares</p>`
+  })
+]);
 
   
  
