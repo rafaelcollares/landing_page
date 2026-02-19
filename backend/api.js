@@ -2,12 +2,11 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  host: "smtp.mailersend.net",
   port: 587,
-  secure: false,
   auth: {
-    user: process.env.EMAIL,
-    pass: process.env.PASSWORD,
+    user: process.env.EMAIL_SEND,
+    pass: process.env.PASSWORD_SEND,
   },
 });
 
@@ -34,7 +33,7 @@ async function sendMail(req, res) {
     }
     
     const mailOptions = {
-      from: process.env.EMAIL,
+      from: process.env.EMAIL_SEND,
       to: process.env.EMAIL,
       subject: `Pedido de orçamento de ${email}`,
       html:
@@ -47,7 +46,7 @@ async function sendMail(req, res) {
 
     // Resposta automática para o cliente
     const responseMailOptions = {
-      from: process.env.EMAIL,
+      from: process.env.EMAIL_SEND,
       to: email, // aqui vai para quem fez o pedido!
       subject: "Recebemos seu pedido",
       html:
