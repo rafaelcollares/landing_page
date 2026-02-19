@@ -69,8 +69,8 @@ async function sendMail(req, res) {
 
     res.status(200).send('success');
   } catch (error) {
-    console.error(error);
-    res.status(500).send('error', {error:error.message})
+    console.error("ERRO COMPLETO:", error);
+  res.status(500).json({ error: error.message });
 
   }
 }
